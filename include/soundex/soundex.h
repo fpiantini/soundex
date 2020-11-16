@@ -9,10 +9,13 @@ namespace soundex
   class Soundex
   {
   public:
-    std::string encode(const std::string &word) const { return zeroPad(word); }
+    std::string encode(const std::string &word) const;
 
   private:
-    std::string zeroPad(const std::string &word) const { return word + "000"; }
+    std::string head(const std::string &word) const;
+    std::string encodeDigits(const std::string &word) const;
+    std::string encodeDigit() const;
+    std::string zeroPad(const std::string &word) const;
   };
 
 } // namespace soundex
