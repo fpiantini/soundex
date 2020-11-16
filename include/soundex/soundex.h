@@ -14,7 +14,7 @@ namespace soundex
   private:
     std::string head(const std::string &word) const;
     std::string encodeDigits(const std::string &word) const;
-    std::string encodeDigit() const;
+    std::string encodeDigit(char letter) const;
     std::string zeroPad(const std::string &word) const;
   };
 
