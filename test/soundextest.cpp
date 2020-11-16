@@ -14,19 +14,22 @@ private:
 
 };
 
-TEST(SoundexEncoding, RetainSoleLetterOfOneLetterWord)
+
+// -------------------------------------------------------------------------------
+// Test area begins here...
+// -------------------------------------------------------------------------------
+class SoundexEncoding : public testing::Test
 {
+public:
     Soundex soundex;
+};
 
-    // auto encoded = soundex.encode("A");
-    // ASSERT_THAT(encoded, testing::Eq("A"));
-
+TEST_F(SoundexEncoding, RetainSoleLetterOfOneLetterWord)
+{
     ASSERT_EQ(soundex.encode("A"), "A000");
 }
 
-TEST(SoundexEncoding, PadsWithZerosToEnsureThreeDigits)
+TEST_F(SoundexEncoding, PadsWithZerosToEnsureThreeDigits)
 {
- Soundex soundex;
-
  ASSERT_EQ(soundex.encode("I"), "I000");
 }
