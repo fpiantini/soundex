@@ -1,24 +1,11 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
-
 #include "soundex/soundex.h"
 
 using namespace soundex;
+using namespace testing;
 
-class Soundex
-{
-public:
-    std::string encode(const std::string &word) const { return zeroPad(word); }
-private:
-    std::string zeroPad(const std::string &word) const { return word + "000"; }
-
-};
-
-
-// -------------------------------------------------------------------------------
-// Test area begins here...
-// -------------------------------------------------------------------------------
-class SoundexEncoding : public testing::Test
+class SoundexEncoding : public Test
 {
 public:
     Soundex soundex;
