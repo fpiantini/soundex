@@ -84,3 +84,7 @@ TEST_F(SoundexEncoding, IgnoresCaseWhenEncodingConsonants) {
 TEST_F(SoundexEncoding, CombinesDuplicateCodesWhen2ndLetterDuplicates1st) {
     ASSERT_EQ(soundex.encode("Ggtp"), "G310");
 }
+
+TEST_F(SoundexEncoding, DoesNotCombineDuplicateEncodingsSeparatedByVowels) {
+    ASSERT_EQ(soundex.encode("Jbob"), "J110");
+}

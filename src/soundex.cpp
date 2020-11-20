@@ -53,22 +53,24 @@ namespace soundex
 
     void Soundex::encodeHead(std::string &enc, const std::string &word) const
     {
-        encodeLetter(enc, word.front(), true);
+        encodeLetter(enc, word.front(), 0, true);
         //enc += encodedDigit(word.front());
     }
 
     void Soundex::encodeTail(std::string &enc, const std::string &word) const
     {
+        char prevLetter = 0;
         for(auto letter: word) {
             if (isComplete(enc)) break;
-            encodeLetter(enc, letter);
+            encodeLetter(enc, letter, prevLetter);
+            prevLetter = letter;
         }
     }
 
-    void Soundex::encodeLetter(std::string &enc, char letter, bool forced) const
+    void Soundex::encodeLetter(std::string &enc, char letter, char prevLetter, bool forced) const
     {
         auto digit = encodedDigit(letter);
-        if (forced || (digit != NotADigit && digit != lastDigit(enc)))
+        if (forced || (digit != NotADigit && (digit != lastDigit(enc) || isVowel(prevLetter))))
             enc += digit;
     }
 
@@ -97,6 +99,11 @@ namespace soundex
     char Soundex::lower(char &c) const
     {
         return std::tolower(static_cast<unsigned char>(c));
+    }
+
+    bool Soundex::isVowel(char letter) const
+    {
+        return std::string("aeiouy").find(letter) != std::string::npos;
     }
 
     bool Soundex::isComplete(const std::string &word) const

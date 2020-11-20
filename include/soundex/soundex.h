@@ -17,12 +17,13 @@ namespace soundex
     std::string encodedDigits(const std::string &word) const;
     void encodeHead(std::string &enc, const std::string &word) const;
     void encodeTail(std::string &enc, const std::string &word) const;
-    void encodeLetter(std::string &enc, char letter, bool forced = false) const;
+    void encodeLetter(std::string &enc, char letter, char prevLetter, bool forced = false) const;
     std::string zeroPad(const std::string &word) const;
     std::string lastDigit(const std::string &word) const;
     std::string upperFront(const std::string &word) const;
     std::string tail(const std::string &word) const;
     char lower(char &c) const;
+    bool isVowel(char letter) const;
     bool isComplete(const std::string &word) const;
   };
 
